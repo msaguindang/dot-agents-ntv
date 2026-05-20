@@ -8,8 +8,8 @@ set -euo pipefail
 # Example: ./deploy_to_pi.sh feat/123-new-player dev both
 # ============================================================
 
-# Source NTV paths from .bashrc subset
-export NTV_DIR="${NTV_DIR:-$HOME/Projects/work/ntv}"
+# Require NTV_DIR to be set in the environment; fail loudly if missing
+export NTV_DIR="${NTV_DIR:?NTV_DIR is not set}"
 export NTV_PLAYER_SERVER_WT_DIR="$NTV_DIR/player-server-worktrees"
 export NTV_PLAYER_UI_WT_DIR="$NTV_DIR/player-ui-worktrees"
 
@@ -77,4 +77,3 @@ fi
 echo ""
 log_info "Deployment to $TARGET_ENV finished successfully."
 echo "Check the remote device to ensure the player restarted."
-EOF

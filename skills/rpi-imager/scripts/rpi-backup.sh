@@ -58,8 +58,8 @@ validate_args() {
     local output_path="${2:-}"
 
     if [[ ! -b "$sd_device" ]]; then
-        log_error "SD device not found or not a block device: $sd_device"
-        log_error "Use whole disk (e.g., /dev/sdX), not partition (e.g., /dev/sdX1)"
+        log_error "SD device not found or not a block device: $sd_device" >&2
+        log_error "Use whole disk (e.g., /dev/sdX), not partition (e.g., /dev/sdX1)" >&2
         exit 1
     fi
 
@@ -72,7 +72,7 @@ validate_args() {
 
     # Check if output file already exists
     if [[ -f "$output_path" ]]; then
-        log_error "Output file already exists: $output_path"
+        log_error "Output file already exists: $output_path" >&2
         read -p "Overwrite? (y/N) " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -83,16 +83,16 @@ validate_args() {
     # Device verification: Ensure it's not mounted and looks like an SD/USB device
     local device_info
     device_info=$(lsblk -no NAME,SIZE,TYPE,MOUNTPOINT,VENDOR,MODEL "$sd_device" | head -n 1)
-    log_info "Verifying device: $device_info"
+    log_info "Verifying device: $device_info" >&2
 
     if [[ -n "$(lsblk -no MOUNTPOINT "$sd_device" | grep -v '^$')" ]]; then
-        log_error "Device appears to be mounted! Unmount all partitions first."
+        log_error "Device appears to be mounted! Unmount all partitions first." >&2
         exit 1
     fi
 
     read -p "Are you ABSOLUTELY sure this is the correct SD card? (YES/no) " -r
     if [[ ! $REPLY == "YES" ]]; then
-        log_info "Aborted."
+        log_info "Aborted." >&2
         exit 1
     fi
 

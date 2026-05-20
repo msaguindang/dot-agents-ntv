@@ -1,5 +1,5 @@
 ---
-name: rpi-deployer
+name: rpi-deploy
 description: Orchestrates deployment of player-ui and player-server to Raspberry Pi test environments based on the active git worktree. Use this skill to build, bundle, and deploy code to a Pi via SSH/SFTP.
 ---
 

@@ -1,11 +1,11 @@
 ---
-name: rpi-manager
-description: Manage and automate Raspberry Pi preparation and backup processes. Use this skill whenever a user wants to prep a Pi for cloning, backup an SD card to an image, or manage Pi cloning workflows.
+name: rpi-imager
+description: Manage SD card images for Raspberry Pi workflows — prep a Pi for cloning, backup an SD card to a compressed .img.xz image. The old name "rpi-manager" was misleading; this skill manages SD card images, not live devices.
 ---
 
-# Raspberry Pi Manager
+# Raspberry Pi Imager
 
-A skill for safely preparing, backing up, and managing Raspberry Pi devices.
+A skill for safely preparing and backing up Raspberry Pi SD card images.
 
 ## When to use this skill
 - Prepping a source Raspberry Pi for cloning (removing machine-specific identity).

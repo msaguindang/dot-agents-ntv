@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ============================================================
-# Device Doctor: Context-Aware SSH Diagnostics
+# RPI Doctor: Context-Aware SSH Diagnostics
 # ============================================================
 # Usage: ./diagnose.sh <device_or_ip> <category> [app_name_or_command]
 # Categories: health | app | general | custom
@@ -10,7 +10,10 @@ set -euo pipefail
 # Example: ./diagnose.sh 192.168.0.50 health
 # ============================================================
 
-INVENTORY_FILE="${DEVICE_INVENTORY:-$HOME/.config/pi/device-inventory.json}"
+# Dependency checks
+command -v jq >/dev/null || { echo 'Error: jq is required'; exit 1; }
+
+INVENTORY_FILE="$HOME/.config/opencode/device-inventory.json"
 TARGET=$1
 CATEGORY=$2
 ARG=${3:-} # Either an app name (like 'player-server') or a custom command
@@ -20,7 +23,7 @@ log_error() { echo -e "\033[1;31m[ERROR]\033[0m $*" >&2; exit 1; }
 
 # 1. Resolve Target (Name -> IP mapping)
 HOST="$TARGET"
-USER="[FILL_IN]" # Default SSH user — set to your Pi username
+USER="${RPI_USER:-pi}" # Default user — override with RPI_USER env var
 AUTH="key"
 
 if [[ -f "$INVENTORY_FILE" ]]; then
@@ -103,4 +106,3 @@ elif [[ $SSH_EXIT_CODE -ne 0 ]]; then
 fi
 
 log_info "Diagnostics complete."
-EOF

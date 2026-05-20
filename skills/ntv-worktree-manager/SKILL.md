@@ -5,7 +5,7 @@ description: Orchestrate git worktree creation, synchronization, and setup acros
 
 # NTV Worktree Manager
 
-A skill for managing the synchronized git worktrees across the four core NTV repositories, ensuring your development environment is consistent across the entire ecosystem.
+A skill for managing synchronized git worktrees across the four core NTV repositories. Worktrees are created **inside** each repo at `<repo>/.worktrees/<branch>` — git-native and automatically gitignored.
 
 ## When to use this skill
 - Starting a new ticket (`feat`, `fix`, `hotfix`, `test`).
@@ -16,7 +16,7 @@ A skill for managing the synchronized git worktrees across the four core NTV rep
 
 ## Workflow: Create/Sync Worktrees for a Ticket
 
-This workflow uses the local environment variables from `~/.bashrc` to dynamically determine paths.
+This workflow uses `NTV_DIR` from the environment (must be exported — the script exits with an error if unset).
 
 1.  **Ask for Details**: Prompt the user for:
     - **Ticket ID** (e.g., `456`)
@@ -24,17 +24,36 @@ This workflow uses the local environment variables from `~/.bashrc` to dynamical
     - **Type** (e.g., `feat`, `fix`, `hotfix`)
     - **Selected Repos** (Which of `api`, `dash`, `server`, `ui` need the worktree?)
 2.  **Construct Branch Name**: Formulate the standard branch: `[type]/[ID]-[Description]` (e.g., `fix/456-fix-auth-bug`).
-3.  **Validate Path**: Ensure the `*-worktrees` directory exists for the selected projects.
-4.  **Execute**: Invoke `scripts/manage_worktrees.sh` with the ticket details.
-5.  **Report**: Summarize the created directories and provide the next step (e.g., `ntv wt [branch-name]`).
+3.  **Execute**: Invoke `scripts/manage_worktrees.sh` with the ticket details.
+4.  **Report**: Summarize the created directories and next steps.
+
+### Resulting structure
+
+```
+$NTV_DIR/
+├── api-v1/
+│   └── .worktrees/
+│       └── fix/456-fix-auth-bug/      ← worktree
+├── dashboard-v1/
+│   └── .worktrees/
+│       └── fix/456-fix-auth-bug/
+├── player-server/
+│   └── .worktrees/
+│       └── fix/456-fix-auth-bug/
+└── player-ui/
+    └── .worktrees/
+        └── fix/456-fix-auth-bug/
+```
+
+`.worktrees/` is gitignored by default (git adds it to `.git/info/exclude` automatically for worktrees).
 
 ---
 
 ## Safety Guidelines
 - **NEVER** overwrite an existing worktree directory without explicit user confirmation.
 - **ALWAYS** perform a `git fetch origin` before creating a new worktree to ensure the base branch is up-to-date.
-- **VERIFY** all paths before executing `git worktree add`.
+- **VERIFY** `NTV_DIR` is set and all paths resolve before executing.
 - **USE** the provided `manage_worktrees.sh` script to maintain consistency.
 
 ## Bundled Resources
-- `scripts/manage_worktrees.sh` (The executor for git operations)
+- `scripts/manage_worktrees.sh` — executes all git operations

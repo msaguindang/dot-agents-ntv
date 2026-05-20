@@ -62,8 +62,7 @@ pi "hello"
 
 | Skill | Purpose |
 |---|---|
-| `ntv-worktree-manager` | Create/manage git worktrees across NTV repos |
-| `rpi-deployer` | Deploy player-ui + player-server to test Pi |
-| `pi5-deploy` | Deploy to Raspberry Pi 5 targets |
-| `device-doctor` | Diagnose RPi symptoms via SSH |
-| `rpi-manager` | Prep and backup RPi SD cards |
+| `ntv-worktree-manager` | Create/manage git worktrees inside each NTV repo (`.worktrees/`) |
+| `rpi-deploy` | Build player-ui + player-server and deploy to test RPi via SSH/SFTP |
+| `rpi-doctor` | Diagnose RPi symptoms (laggy, crashed, out of space) via SSH |
+| `rpi-imager` | Prep a fresh RPi for NTV setup; backup SD card to `.img.xz` |
