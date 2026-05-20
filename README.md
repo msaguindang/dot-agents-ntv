@@ -7,7 +7,7 @@ NTV360 context vault for the pi coding agent. Gives new and existing NTV360 deve
 This repo is cloned to `~/.agents` and provides the pi agent with:
 - NTV v1 and v2 ecosystem knowledge (player-ui, player-server, api-v1, dashboard-v1)
 - NTV-specific agents: `devops` (RPi deployment), `qa` (spec + bug review)
-- NTV-specific skills: worktree manager, RPi deployer, device doctor
+- NTV-specific skills: worktree manager, RPi deployer, RPi doctor, RPi imager
 - Code style standards
 
 ## Setup
@@ -19,12 +19,12 @@ npm install -g @earendil-works/pi-coding-agent
 
 ### 2. Clone pi harness config
 ```bash
-git clone <dot-pi-repo-url> ~/.pi/agent
+git clone git@github.com:msaguindang/dot-pi.git ~/.pi/agent
 ```
 
 ### 3. Clone this repo
 ```bash
-git clone <this-repo-url> ~/.agents
+git clone git@github.com:msaguindang/dot-agents-ntv.git ~/.agents
 ```
 
 ### 4. Fill in your details
