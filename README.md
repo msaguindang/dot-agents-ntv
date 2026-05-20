@@ -19,12 +19,12 @@ npm install -g @earendil-works/pi-coding-agent
 
 ### 2. Clone pi harness config
 ```bash
-git clone git@github.com:msaguindang/dot-pi.git ~/.pi/agent
+git clone https://github.com/msaguindang/dot-pi.git ~/.pi/agent
 ```
 
 ### 3. Clone this repo
 ```bash
-git clone git@github.com:msaguindang/dot-agents-ntv.git ~/.agents
+git clone https://github.com/msaguindang/dot-agents-ntv.git ~/.agents
 ```
 
 ### 4. Fill in your details
