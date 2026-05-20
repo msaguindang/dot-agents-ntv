@@ -12,7 +12,18 @@ This repo is cloned to `~/.agents` and provides the pi agent with:
 
 ## Setup
 
-> **Windows users:** Run all commands inside your **WSL terminal** (bash), not PowerShell or CMD. Opening WSL: search "Ubuntu" or "WSL" in the Start menu.
+> ### ⚠️ Windows Users — Read Before Running Anything
+>
+> The pi agent runs inside **WSL (Windows Subsystem for Linux)**. All setup commands must be run inside a WSL bash terminal.
+>
+> | Shell | `~` | `$HOME` | Use for setup? |
+> |---|---|---|---|
+> | **WSL bash** | ✅ expands to `/home/yourname` | ✅ works | ✅ **Yes — use this** |
+> | **PowerShell** | ✅ expands to `C:\Users\yourname` | ✅ works | ❌ Wrong filesystem |
+> | **CMD** | ❌ creates literal `~` folder | ❌ not recognized | ❌ Wrong filesystem |
+>
+> **How to open WSL:** Search "Ubuntu" or "WSL" in the Start menu, or run `wsl` in PowerShell.
+> If WSL is not installed: `wsl --install` in PowerShell (Admin), then restart.
 
 ### 1. Install pi
 ```bash
