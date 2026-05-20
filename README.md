@@ -12,6 +12,8 @@ This repo is cloned to `~/.agents` and provides the pi agent with:
 
 ## Setup
 
+> **Windows users:** Run all commands inside your **WSL terminal** (bash), not PowerShell or CMD. Opening WSL: search "Ubuntu" or "WSL" in the Start menu.
+
 ### 1. Install pi
 ```bash
 npm install -g @earendil-works/pi-coding-agent
@@ -19,12 +21,12 @@ npm install -g @earendil-works/pi-coding-agent
 
 ### 2. Clone pi harness config
 ```bash
-git clone https://github.com/msaguindang/dot-pi.git ~/.pi/agent
+git clone https://github.com/msaguindang/dot-pi.git $HOME/.pi/agent
 ```
 
 ### 3. Clone this repo
 ```bash
-git clone https://github.com/msaguindang/dot-agents-ntv.git ~/.agents
+git clone https://github.com/msaguindang/dot-agents-ntv.git $HOME/.agents
 ```
 
 ### 4. Fill in your details
